@@ -33,8 +33,9 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.1rem 3rem;
-    background: rgba(10,10,15,0.82);
+    background: rgba(10,10,15,0.85);
     backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
   .nav-logo {
@@ -46,16 +47,37 @@
   .nav-links a {
     text-decoration: none; color: var(--muted);
     font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: color 0.2s;
+    text-transform: uppercase; transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--accent2); }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; background: none; border: none; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--muted); border-radius: 2px; transition: all 0.3s;
+  }
+  .mobile-menu {
+    display: none; position: fixed; top: 60px; left: 0; right: 0;
+    background: rgba(10,10,15,0.97); border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem; z-index: 99;
+  }
+  .mobile-menu.open { display: flex; flex-direction: column; gap: 1rem; }
+  .mobile-menu a {
+    text-decoration: none; color: var(--muted);
+    font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--accent2); }
 
   /* HERO */
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center;
-    padding: 0 3rem;
+    padding: 8rem 3rem 4rem;
     position: relative; overflow: hidden;
   }
   .hero::before {
@@ -77,42 +99,34 @@
     font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--accent2); margin-bottom: 1.5rem;
   }
-  .hero-tag span {
-    display: inline-block; width: 24px; height: 1.5px; background: var(--accent2);
-  }
+  .hero-tag span { display: inline-block; width: 24px; height: 1.5px; background: var(--accent2); }
   .hero-name {
     font-family: 'Syne', sans-serif;
     font-size: clamp(3.2rem, 8vw, 6rem);
-    font-weight: 800; line-height: 1.05;
-    letter-spacing: -0.02em;
+    font-weight: 800; line-height: 1.05; letter-spacing: -0.02em;
     background: linear-gradient(135deg, #f0eeff 30%, #a89cff 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.5rem;
+    background-clip: text; margin-bottom: 0.5rem;
   }
   .hero-title {
     font-size: 1.05rem; color: var(--muted); font-weight: 300;
     margin-bottom: 2rem; max-width: 480px;
   }
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn-primary {
-    padding: 0.75rem 2rem;
-    background: var(--accent); color: #fff;
+    padding: 0.75rem 2rem; background: var(--accent); color: #fff;
     border: none; border-radius: 100px;
     font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
     text-decoration: none; cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
+    transition: background 0.2s, transform 0.15s; display: inline-block;
   }
   .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
   .btn-outline {
-    padding: 0.75rem 2rem;
-    background: transparent; color: var(--accent2);
+    padding: 0.75rem 2rem; background: transparent; color: var(--accent2);
     border: 1px solid var(--border); border-radius: 100px;
     font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
     text-decoration: none; cursor: pointer;
-    transition: background 0.2s, transform 0.15px;
+    transition: background 0.2s, transform 0.15s; display: inline-block;
   }
   .btn-outline:hover { background: rgba(108,99,255,0.1); transform: translateY(-2px); }
 
@@ -134,26 +148,20 @@
     text-transform: uppercase; color: var(--accent2);
     display: flex; align-items: center; gap: 10px; margin-bottom: 2.5rem;
   }
-  .section-label::after {
-    content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--border);
-  }
+  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--border); }
   .section-heading {
     font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
-    letter-spacing: -0.01em;
+    font-weight: 800; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.01em;
   }
 
   /* ABOUT */
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 2rem;
-  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 2rem; }
   .about-text { color: var(--muted); font-size: 1.02rem; line-height: 1.85; }
   .about-text strong { color: var(--text); font-weight: 500; }
   .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .stat-card {
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 1.4rem 1.2rem;
-    text-align: center;
+    border-radius: 14px; padding: 1.4rem 1.2rem; text-align: center;
   }
   .stat-num {
     font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800;
@@ -169,15 +177,13 @@
   .skill-card {
     background: var(--card); border: 1px solid var(--border);
     border-radius: 14px; padding: 1.4rem 1.2rem;
-    transition: border-color 0.2s, transform 0.2s;
-    cursor: default;
+    transition: border-color 0.2s, transform 0.2s; cursor: default;
   }
   .skill-card:hover { border-color: rgba(108,99,255,0.45); transform: translateY(-4px); }
   .skill-icon { font-size: 1.6rem; margin-bottom: 0.7rem; }
   .skill-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
-  .skill-level {
-    height: 3px; background: var(--bg3); border-radius: 100px; margin-top: 0.7rem; overflow: hidden;
-  }
+  .skill-sub { font-size: 0.78rem; color: var(--muted); }
+  .skill-level { height: 3px; background: var(--bg3); border-radius: 100px; margin-top: 0.7rem; overflow: hidden; }
   .skill-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
 
   /* PROJECTS */
@@ -204,60 +210,45 @@
     color: var(--accent2); background: rgba(108,99,255,0.1);
     padding: 3px 10px; border-radius: 100px; margin-bottom: 0.9rem;
   }
-  .project-name {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem;
-    margin-bottom: 0.6rem;
-  }
+  .project-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.6rem; }
   .project-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  .project-links { display: flex; gap: 0.6rem; margin-top: 1.2rem; flex-wrap: wrap; }
+  .project-link {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em;
+    text-decoration: none; color: var(--accent2);
+    border: 1px solid var(--border); border-radius: 100px;
+    padding: 4px 14px; transition: background 0.2s;
+  }
+  .project-link:hover { background: rgba(108,99,255,0.12); }
 
   /* EDUCATION */
+  .edu-list { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
   .edu-card {
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 2rem 1.8rem;
-    display: flex; gap: 2rem; align-items: flex-start; margin-top: 2rem;
+    border-radius: 16px; padding: 1.8rem;
+    display: flex; gap: 1.8rem; align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s;
   }
+  .edu-card:hover { border-color: rgba(108,99,255,0.4); transform: translateX(4px); }
   .edu-logo {
     width: 54px; height: 54px; border-radius: 12px;
     background: rgba(108,99,255,0.15); border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--accent2);
-    flex-shrink: 0;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem;
+    color: var(--accent2); flex-shrink: 0; text-align: center; line-height: 1.3;
   }
-  .edu-details h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 2px; }
-  .edu-details p { font-size: 0.88rem; color: var(--muted); }
+  .edu-details h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 3px; }
+  .edu-place { font-size: 0.88rem; color: var(--muted); }
+  .edu-degree { font-size: 0.88rem; color: var(--muted); margin-top: 3px; }
   .edu-badge {
-    margin-top: 0.9rem; display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 0.8rem; display: inline-flex; align-items: center; gap: 6px;
     font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em;
     color: var(--accent2); border: 1px solid var(--border);
     padding: 4px 12px; border-radius: 100px;
   }
 
-  .edu-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 2rem 1.8rem;
-    display: flex; gap: 2rem; align-items: flex-start; margin-top: 2rem;
-  }
-  .edu-logo {
-    width: 54px; height: 54px; border-radius: 12px;
-    background: rgba(108,99,255,0.15); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--accent2);
-    flex-shrink: 0;
-  }
-  .edu-details h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 2px; }
-  .edu-details p { font-size: 0.88rem; color: var(--muted); }
-  .edu-badge {
-    margin-top: 0.9rem; display: inline-flex; align-items: center; gap: 6px;
-    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em;
-    color: var(--accent2); border: 1px solid var(--border);
-    padding: 4px 12px; border-radius: 100px;
-  }
- }
- }
   /* CONTACT */
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; align-items: center;
-  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; align-items: center; }
   .contact-text { color: var(--muted); font-size: 1rem; line-height: 1.85; }
   .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
   .contact-link {
@@ -279,26 +270,49 @@
     color: var(--muted); font-size: 0.8rem;
   }
 
-  @media (max-width: 640px) {
+  /* FADE-IN */
+  .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.2rem; }
-    .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; }
-    .edu-card { flex-direction: column; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .edu-card { flex-direction: column; gap: 1rem; }
+    .scroll-indicator { left: 1.5rem; }
   }
 </style>
 </head>
 <body>
 
+<!-- NAVIGATION -->
 <nav>
   <div class="nav-logo">AT</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#education" onclick="closeMobile()">Education</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -317,151 +331,174 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-label">About me</div>
-  <h2 class="section-heading">Engineering meets<br>curiosity</h2>
+  <div class="section-label fade-in">About me</div>
+  <h2 class="section-heading fade-in">Engineering meets<br>curiosity</h2>
   <div class="about-grid">
-    <div class="about-text">
-      <p>I'm <strong>Arjun Tammisetti</strong>, a final-year Electronics & Communication Engineering student at <strong>SRKR Engineering College</strong>, Bhimavaram, graduating in 2026.</p>
+    <div class="about-text fade-in">
+      <p>I'm <strong>Arjun Tammisetti</strong>, a final-year Electronics &amp; Communication Engineering student at <strong>SRKR Engineering College</strong>, Bhimavaram, graduating in 2026.</p>
       <br>
-      <p>I'm passionate about building systems that bridge the physical and digital worlds — from circuit design and embedded systems to full-stack web development. I love turning ideas into real, working things.</p>
+      <p>I'm passionate about building systems that bridge the physical and digital worlds — from web development to database design. I love turning ideas into real, working things.</p>
       <br>
-      <p>When I'm not in the lab or writing code, I'm exploring new technologies and looking for problems worth solving.</p>
+      <p>When I'm not writing code, I'm exploring new technologies and looking for problems worth solving.</p>
     </div>
-    <div class="stat-grid">
+    <div class="stat-grid fade-in">
       <div class="stat-card"><span class="stat-num">2026</span><span class="stat-desc">Graduating</span></div>
       <div class="stat-card"><span class="stat-num">ECE</span><span class="stat-desc">Specialisation</span></div>
-      <div class="stat-card"><span class="stat-num">3+</span><span class="stat-desc">Core skills</span></div>
-      <div class="stat-card"><span class="stat-num">∞</span><span class="stat-desc">Things to learn</span></div>
+      <div class="stat-card"><span class="stat-num">5+</span><span class="stat-desc">Core skills</span></div>
+      <div class="stat-card"><span class="stat-num">&#8734;</span><span class="stat-desc">Things to learn</span></div>
     </div>
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills" style="background: var(--bg2);">
-  <div class="section-label">Technical skills</div>
-  <h2 class="section-heading">What I work with</h2>
+  <div class="section-label fade-in">Technical skills</div>
+  <h2 class="section-heading fade-in">What I work with</h2>
   <div class="skills-grid">
-    <div class="skill-card">
-      <div class="skill-icon">☕</div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">&#9749;</div>
       <div class="skill-name">Core Java</div>
-      <div style="font-size:0.78rem;color:var(--muted)">OOP, data structures, algorithms</div>
+      <div class="skill-sub">OOP, data structures, algorithms</div>
       <div class="skill-level"><div class="skill-fill" style="width:80%"></div></div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">🗄️</div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">&#128451;</div>
       <div class="skill-name">SQL</div>
-      <div style="font-size:0.78rem;color:var(--muted)">Queries, joins, database design</div>
+      <div class="skill-sub">Queries, joins, database design</div>
       <div class="skill-level"><div class="skill-fill" style="width:72%"></div></div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">🌐</div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">&#127760;</div>
       <div class="skill-name">JavaScript</div>
-      <div style="font-size:0.78rem;color:var(--muted)">DOM, ES6+, web development</div>
+      <div class="skill-sub">DOM, ES6+, web development</div>
       <div class="skill-level"><div class="skill-fill" style="width:70%"></div></div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">⚡</div>
-      <div class="skill-name">Electronics</div>
-      <div style="font-size:0.78rem;color:var(--muted)">Circuit analysis, signals & systems</div>
-      <div class="skill-level"><div class="skill-fill" style="width:85%"></div></div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon"> </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">&#128396;</div>
       <div class="skill-name">HTML</div>
-      <div style="font-size:0.78rem;color:var(--muted)">Microcontrollers & IoT basics</div>
-      <div class="skill-level"><div class="skill-fill" style="width:65%"></div></div>
+      <div class="skill-sub">Semantic markup, structure &amp; layout</div>
+      <div class="skill-level"><div class="skill-fill" style="width:88%"></div></div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">🛠️</div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">&#127912;</div>
+      <div class="skill-name">CSS</div>
+      <div class="skill-sub">Flexbox, Grid, animations &amp; responsive design</div>
+      <div class="skill-level"><div class="skill-fill" style="width:82%"></div></div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">&#128295;</div>
       <div class="skill-name">Problem Solving</div>
-      <div style="font-size:0.78rem;color:var(--muted)">DSA & logical thinking</div>
+      <div class="skill-sub">DSA &amp; logical thinking</div>
       <div class="skill-level"><div class="skill-fill" style="width:75%"></div></div>
     </div>
+
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label">Projects</div>
-  <h2 class="section-heading">Things I've built</h2>
+  <div class="section-label fade-in">Projects</div>
+  <h2 class="section-heading fade-in">Things I've built</h2>
   <div class="projects-grid">
-    <div class="project-card" data-num="01">
-      <div class="project-tag">Electronics</div>
-      <div class="project-name">- Real Time Detection of Falls Among Elderly People Using YOLOv8</div>
-      <p class="project-desc">•
-Falls among the elderly population represent a significant global health concern, often leading to serious 
-injuries, loss of independence, and increased mortality. Early and accurate detection of fall events in real 
-time is therefore critical for timely medical intervention and improved quality of care. This project presents 
-a real-time fall detection system for elderly individuals using YOLOv8, one of the most advanced object 
-detection architectures available today.
-•
-The proposed system leverages the YOLOv8 model trained on a custom dataset comprising annotated video 
-frames depicting various fall scenarios and normal daily activities. The dataset includes diverse 
-environments such as living rooms, corridors, and outdoor spaces to ensure robust generalization. Data 
-augmentation techniques including flipping,rotation,brightnessadjustment, and mosaic augmentation were 
-applied to improve model performance.
-•
-Experimental results show that the proposed system outperforms conventional approaches in terms of 
-detection speed and accuracy. The system is capable of processing video streams in real time with minimal 
-latency, making it deployable in smart home environments, hospitals, and elderly care facilities..</p>
+
+    <!-- PROJECT 1 — Replace with your real project -->
+    <div class="project-card fade-in" data-num="01">
+      <div class="project-tag">Web Dev</div>
+      <div class="project-name">Project One</div>
+      <p class="project-desc">Replace this with your real project description. Explain what it does, what technologies you used, and what problem it solves.</p>
+      <div class="project-links">
+        <a href="#" class="project-link">GitHub</a>
+        <a href="#" class="project-link">Demo</a>
+      </div>
     </div>
-   
+
+    <!-- PROJECT 2 — Replace with your real project -->
+    <div class="project-card fade-in" data-num="02">
+      <div class="project-tag">Java</div>
+      <div class="project-name">Project Two</div>
+      <p class="project-desc">Replace this with your real project description. Explain what it does, what technologies you used, and what problem it solves.</p>
+      <div class="project-links">
+        <a href="#" class="project-link">GitHub</a>
+        <a href="#" class="project-link">Demo</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 — Replace with your real project -->
+    <div class="project-card fade-in" data-num="03">
+      <div class="project-tag">SQL</div>
+      <div class="project-name">Project Three</div>
+      <p class="project-desc">Replace this with your real project description. Explain what it does, what technologies you used, and what problem it solves.</p>
+      <div class="project-links">
+        <a href="#" class="project-link">GitHub</a>
+        <a href="#" class="project-link">Demo</a>
+      </div>
+    </div>
+
   </div>
-  <p style="color:var(--muted);font-size:0.82rem;margin-top:1.5rem;font-style:italic;" .</p>
 </section>
 
 <!-- EDUCATION -->
 <section id="education" style="background: var(--bg2);">
-  <div class="section-label">Education</div>
-  <h2 class="section-heading">Academic background</h2>
-  <div class="edu-card">
-    <div class="edu-logo">SR</div>
-    <div class="edu-details">
-      <h3>SRKR Engineering College</h3>
-      <p>Bhimavaram, Andhra Pradesh, India</p>
-      <p style="margin-top:4px">Bachelor of Engineering — Electronics, Communication & Electrical Engineering</p>
-      <div class="edu-badge">📅 2022 – 2026</div>
-    </div>
-  </div>
-</section>
- <section id="education" style="background: var(--bg2);">
+  <div class="section-label fade-in">Education</div>
+  <h2 class="section-heading fade-in">Academic background</h2>
+  <div class="edu-list">
 
-  <div class="edu-card">
-    <div class="edu-logo">AD</div>
-    <div class="edu-details">
-      <h3>aditya junior college</h3>
-      <p>Bhimavaram, Andhra Pradesh, India</p>
-      <p style="margin-top:4px">MPC</p>
-      <div class="edu-badge">📅 2020 – 2022</div>
+    <!-- SRKR Engineering College -->
+    <div class="edu-card fade-in">
+      <div class="edu-logo">SR<br>KR</div>
+      <div class="edu-details">
+        <h3>SRKR Engineering College</h3>
+        <div class="edu-place">Bhimavaram, Andhra Pradesh, India</div>
+        <div class="edu-degree">Bachelor of Engineering — Electronics, Communication &amp; Electrical Engineering</div>
+        <div class="edu-badge">&#128197; 2022 – 2026</div>
+      </div>
     </div>
+
+    <!-- Aditya Junior College -->
+    <div class="edu-card fade-in">
+      <div class="edu-logo">AJC</div>
+      <div class="edu-details">
+        <h3>Aditya Junior College</h3>
+        <div class="edu-place">Bhimavaram, Andhra Pradesh, India</div>
+        <div class="edu-degree">Intermediate — MPC (Maths, Physics, Chemistry)</div>
+        <div class="edu-badge">&#128197; 2020 – 2022</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">Contact</div>
-  <h2 class="section-heading">Let's build something<br>together</h2>
+  <div class="section-label fade-in">Contact</div>
+  <h2 class="section-heading fade-in">Let's build something<br>together</h2>
   <div class="contact-grid">
-    <p class="contact-text">
-      I'm actively looking for internships, project collaborations, and entry-level opportunities in electronics, embedded systems, or software development. Feel free to reach out — I'd love to connect!
+    <p class="contact-text fade-in">
+      I'm actively looking for internships, project collaborations, and entry-level opportunities in web development or software development. Feel free to reach out — I'd love to connect!
     </p>
-    <div class="contact-links">
+    <div class="contact-links fade-in">
       <a href="tel:+918096515966" class="contact-link">
-        <span class="contact-link-icon">📞</span>
+        <span class="contact-link-icon">&#128222;</span>
         <div class="contact-link-info">
           <small>Phone</small>
           <span>+91 8096515966</span>
         </div>
       </a>
       <a href="mailto:arjuntammisetti9642@gmail.com" class="contact-link">
-        <span class="contact-link-icon">✉️</span>
+        <span class="contact-link-icon">&#9993;</span>
         <div class="contact-link-info">
           <small>Email</small>
           <span>arjuntammisetti9642@gmail.com</span>
         </div>
       </a>
-      <a href="https://www.linkedin.com/in/arjuntammisetti-29b87a369" target="_blank" class="contact-link">
-        <span class="contact-link-icon">🔗</span>
+      <a href="https://www.linkedin.com/in/arjuntammisetti-29b87a369" target="_blank" rel="noopener noreferrer" class="contact-link">
+        <span class="contact-link-icon">&#128279;</span>
         <div class="contact-link-info">
           <small>LinkedIn</small>
           <span>arjuntammisetti-29b87a369</span>
@@ -471,9 +508,34 @@ latency, making it deployable in smart home environments, hospitals, and elderly
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <p>Designed & built with care · Arjun Tammisetti © 2026</p>
+  <p>Designed &amp; built with care &middot; Arjun Tammisetti &copy; 2026</p>
 </footer>
+
+<script>
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+  }
+
+  // Scroll fade-in animation
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
